@@ -3,15 +3,12 @@ const ctx = canvas.getContext("2d")
 const canvasBounds = canvas.getBoundingClientRect()
 const r = 50
 
-ctx.fillStyle = "rgba(60, 179, 113, .5)"
-
 canvas.addEventListener("click", e => {
     const x = e.clientX - canvasBounds.left
     const y = e.clientY - canvasBounds.top
 
-    ctx.beginPath()
-
     if (isSquare) {
+        ctx.beginPath()
         ctx.arc(x, y, r, 0, 2 * Math.PI)
         ctx.fill()
         ctx.stroke()
@@ -39,3 +36,13 @@ canvas.addEventListener("mouseover", () => {
 let isSquare = true
 
 canvas.addEventListener("mouseout", () => { isSquare = !isSquare })
+
+canvas.addEventListener("mousemove", e => {
+    const x = e.clientX - canvasBounds.left
+    const y = e.clientY - canvasBounds.top
+
+    ctx.beginPath()
+    ctx.arc(x, y, r / 3, 0, 2 * Math.PI)
+    ctx.fill()
+    ctx.stroke()
+})
