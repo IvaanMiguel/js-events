@@ -38,6 +38,8 @@ let isSquare = true
 canvas.addEventListener("mouseout", () => { isSquare = !isSquare })
 
 canvas.addEventListener("mousemove", e => {
+    if (!isPressed) return
+
     const x = e.clientX - canvasBounds.left
     const y = e.clientY - canvasBounds.top
 
@@ -46,3 +48,8 @@ canvas.addEventListener("mousemove", e => {
     ctx.fill()
     ctx.stroke()
 })
+
+let isPressed = false
+
+canvas.addEventListener("mousedown", () => { isPressed = true })
+canvas.addEventListener("mouseup", () => { isPressed = false })
